@@ -13,6 +13,7 @@ public class Vacant {
 	private String image = "without-image.png";
 	private String status;
 	private String details;
+	private String category;
 
 	public Integer getId() {
 		return id;
@@ -86,11 +87,19 @@ public class Vacant {
 		this.details = details;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	@Override
 	public String toString() {
 		return "Vacant [id=" + id + ", name=" + name + ", description=" + description + ", date=" + date + ", salary="
 				+ salary + ", outstanding=" + outstanding + ", image=" + image + ", status=" + status + ", details="
-				+ details + "]";
+				+ details + ", category=" + category + "]";
 	}
 
 }

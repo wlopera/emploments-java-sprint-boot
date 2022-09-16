@@ -2,6 +2,7 @@ package com.wlopera.employments.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.wlopera.employments.model.Vacant;
 import com.wlopera.employments.service.IVacantService;
@@ -36,12 +38,19 @@ public class VacantController {
 	}
 
 	@GetMapping("/create")
-	public String create(Model model) {
+	public String create() {
 		return "vacant/formVacant";
+	}
+	
+	@GetMapping("/index")
+	public String listVacants(Model model) {
+		List<Vacant> list = vacantService.getAll();
+		model.addAttribute("vacants", list);
+		return "vacant/index";
 	}
 
 	@PostMapping("/save")
-	public String save(Vacant vacant, BindingResult result, @RequestParam("fileImage") MultipartFile multipart) {
+	public String save(Vacant vacant, BindingResult result, RedirectAttributes attibutes,@RequestParam("fileImage") MultipartFile multipart) {
 		if (result.hasErrors()) {
 			for (ObjectError error : result.getAllErrors()) {
 				System.out.println("Ocurrio un error: " + error.getDefaultMessage());
@@ -57,7 +66,8 @@ public class VacantController {
 		}
 		System.out.println("Vacante: " + vacant);
 		vacantService.save(vacant);
-		return "vacant/listVacant";
+		attibutes.addFlashAttribute("msg", "Registro Guardado");
+		return "redirect:/vacant/index";
 	}
 
 	@GetMapping("/view/{id}")

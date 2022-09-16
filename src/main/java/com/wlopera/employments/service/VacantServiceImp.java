@@ -17,7 +17,7 @@ public class VacantServiceImp implements IVacantService {
 	}
 
 	@Override
-	public List<Vacant> getAll() {
+	public List<Vacant> getAll() {		
 		return vacants;
 	}
 
@@ -41,6 +41,7 @@ public class VacantServiceImp implements IVacantService {
 			vacant.setSalary(14000.0);
 			vacant.setOutstanding(1);
 			vacant.setImage("logo1.png");
+			vacant.setStatus("Aprobada");
 			vacants.add(vacant);
 
 			vacant = new Vacant();
@@ -51,6 +52,7 @@ public class VacantServiceImp implements IVacantService {
 			vacant.setSalary(12000.0);
 			vacant.setOutstanding(0);
 			vacant.setImage("logo3.png");
+			vacant.setStatus("Creada");
 			vacants.add(vacant);
 
 			vacant = new Vacant();
@@ -61,6 +63,7 @@ public class VacantServiceImp implements IVacantService {
 			vacant.setDate(sdf.parse("08-02-2019"));
 			vacant.setSalary(10500.0);
 			vacant.setOutstanding(0);
+			vacant.setStatus("Aprobada");
 			vacants.add(vacant);
 
 			vacant = new Vacant();
@@ -71,6 +74,7 @@ public class VacantServiceImp implements IVacantService {
 			vacant.setSalary(7500.0);
 			vacant.setOutstanding(1);
 			vacant.setImage("logo4.png");
+			vacant.setStatus("Eliminada");
 			vacants.add(vacant);
 
 		} catch (Exception e) {
@@ -100,6 +104,5 @@ public class VacantServiceImp implements IVacantService {
 	@Override
 	public void save(Vacant vacant) {
 		vacants.add(vacant);
-
 	}
 }
