@@ -17,3 +17,6 @@ Crear Controladores - Servicios - formularios (thymeleaf) para consultar, agrega
 
 ### Resultado luego de agregar vacante
 <img src="https://user-images.githubusercontent.com/7141537/190707977-bcc83c87-31bf-444c-bb3e-3b0d872f386d.PNG" width="600" />
+
+### Detalles del empleo
+<img src="https://user-images.githubusercontent.com/7141537/190728971-7e1cba5d-b552-40ac-ba85-a2f7f3b9d019.PNG" width="600" />
