@@ -55,6 +55,15 @@
 				<div class="card-body">
 					<form th:action="@{/vacant/save}" th:object="${vacant}"
 						method="post" enctype="multipart/form-data">
+
+						<div th:if="${#fields.hasErrors('*')}" class="alert alert=danger"
+							role="alert">
+							Por favor corrija los siguientes errores:
+							<ul>
+								<li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
+
+							</ul>
+						</div>
 						<div class="row">
 							<div class="col-md-3">
 								<div class="form-group">
@@ -78,11 +87,12 @@
 								<div class="form-group">
 									<label for="categoria">Categoría</label> <select
 										class="form-control" name="categoria" id="categoria">
-										<option value="1">Ventas</option>
-										<option value="2">Contabilidad</option>
-										<option value="3">Transporte</option>
-										<option value="4">Informatica</option>
-										<option value="5">Construccion</option>
+										<option value="1">Arquitectura</option>
+										<option value="2">Ventas</option>
+										<option value="3">Contabilidad</option>
+										<option value="4">Transporte</option>
+										<option value="5">Informatica</option>
+										<option value="6">Construccion</option>
 									</select>
 								</div>
 							</div>
@@ -161,9 +171,8 @@
 	<footer class="footer">
 		<div class="container">
 			<p>
-				&copy; 2019 EmpleosApp, Inc. | WebApp Desarrollada con Spring Boot
-				2.1.2 | Autor: Iv&aacute;n E. Tinajero D&iacute;az | &middot; <a
-					href="#">Privacy</a> &middot; <a href="#">Terms</a>
+				&copy; 2022 EmpleosApp, Inc. | WebApp Desarrollada con Spring Boot
+				2.1.2 | Autor: wlopera <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
 			</p>
 		</div>
 	</footer>
