@@ -41,7 +41,7 @@ public class VacantController {
 	public String create() {
 		return "vacant/formVacant";
 	}
-	
+
 	@GetMapping("/index")
 	public String listVacants(Model model) {
 		List<Vacant> list = vacantService.getAll();
@@ -50,21 +50,21 @@ public class VacantController {
 	}
 
 	@PostMapping("/save")
-	public String save(Vacant vacant, BindingResult result, RedirectAttributes attibutes,@RequestParam("fileImage") MultipartFile multipart) {
+	public String save(Vacant vacant, BindingResult result, RedirectAttributes attibutes,
+			@RequestParam("fileImage") MultipartFile multipart) {
 		if (result.hasErrors()) {
 			for (ObjectError error : result.getAllErrors()) {
 				System.out.println("Ocurrio un error: " + error.getDefaultMessage());
 			}
 			return "vacant/formVacant";
 		}
-		if(!multipart.isEmpty()) {
+		if (!multipart.isEmpty()) {
 			String path = "c:/temp/empleos/img-vacantes/";
 			String filename = Utilities.saveFile(multipart, path);
 			if (filename != null) {
 				vacant.setImage(filename);
 			}
 		}
-		System.out.println("Vacante: " + vacant);
 		vacantService.save(vacant);
 		attibutes.addFlashAttribute("msg", "Registro Guardado");
 		return "redirect:/vacant/index";
@@ -72,20 +72,17 @@ public class VacantController {
 
 	@GetMapping("/view/{id}")
 	public String getDetails(@PathVariable("id") int idVacant, Model model) {
-
 		Vacant vacant = vacantService.getVacantById(idVacant);
-		System.out.println("Vacante: " + vacant);
 		model.addAttribute("vacant", vacant);
-
 		return "detail";
 	}
 
 	@GetMapping("/delete")
-	public String deleteVacant(@RequestParam("id") int idVacant, Model model) {
-		System.out.println("Borrando vacante con id: " + idVacant);
-		model.addAttribute("id", idVacant);
+	public String deleteVacant(@RequestParam("id") int idVacant, RedirectAttributes attibutes) {
 
-		return "message";
+		vacantService.delete(idVacant);
+		attibutes.addFlashAttribute("msg", "Registro eliminado satisfactoriamente");
+		return "redirect:/vacant/index";
 
 	}
 

@@ -8,4 +8,5 @@ public interface IVacantService {
 	List<Vacant> getAll();
 	Vacant getVacantById(Integer idVacant);
 	void save(Vacant vacant);
+	void delete(Integer id);
 }
