@@ -17,7 +17,7 @@ public class VacantServiceImp implements IVacantService {
 	}
 
 	@Override
-	public List<Vacant> getAll() {		
+	public List<Vacant> getAll() {
 		return vacants;
 	}
 
@@ -95,8 +95,6 @@ public class VacantServiceImp implements IVacantService {
 				break;
 			}
 		}
-		
-		System.out.println("Vacante: " + vacant);
 
 		return vacant;
 	}
@@ -105,4 +103,15 @@ public class VacantServiceImp implements IVacantService {
 	public void save(Vacant vacant) {
 		vacants.add(vacant);
 	}
+
+	@Override
+	public void delete(Integer id) {
+		for (Vacant vacant : vacants) {
+			if (vacant.getId() == id) {
+				vacants.remove(vacant);
+				break;
+			}
+		}
+	}
+
 }
