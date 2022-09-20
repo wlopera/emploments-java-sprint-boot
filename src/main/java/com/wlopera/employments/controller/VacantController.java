@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.wlopera.employments.model.Category;
 import com.wlopera.employments.model.Vacant;
+import com.wlopera.employments.service.ICategoryService;
 import com.wlopera.employments.service.IVacantService;
 import com.wlopera.employments.util.Utilities;
 
@@ -29,6 +31,9 @@ import com.wlopera.employments.util.Utilities;
 @RequestMapping("/vacant")
 public class VacantController {
 
+	@Autowired
+	private ICategoryService categoryService;
+	
 	@Autowired
 	private IVacantService vacantService;
 
@@ -46,6 +51,10 @@ public class VacantController {
 	public String listVacants(Model model) {
 		List<Vacant> list = vacantService.getAll();
 		model.addAttribute("vacants", list);
+		
+		List<Category> categories = categoryService.getAll();
+		System.out.println("Listado de categorias: "+ categories);
+		
 		return "vacant/index";
 	}
 
